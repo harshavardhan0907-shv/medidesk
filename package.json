@@ -1,0 +1,33 @@
+{
+  "name": "medidesk",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"vite --host 0.0.0.0 --port 3000\" \"node backend/server.js\"",
+    "build": "vite build",
+    "start": "node backend/server.js",
+    "server": "node backend/server.js"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "axios": "latest",
+    "bcryptjs": "latest",
+    "compression": "latest",
+    "concurrently": "latest",
+    "cors": "latest",
+    "dotenv": "^18.0.5",
+    "express": "latest",
+    "express-rate-limit": "latest",
+    "helmet": "latest",
+    "joi": "latest",
+    "jsonwebtoken": "latest",
+    "lucide-react": "latest",
+    "mongoose": "latest",
+    "morgan": "latest",
+    "qrcode": "^1.5.4",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-router-dom": "latest"
+  }
+}

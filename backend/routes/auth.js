@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { forgotPassword, login, me, register, requestOtp, resetPassword, verifyOtp } from '../controllers/authController.js';
+import { authSchema, forgotPasswordSchema, resetPasswordSchema, validate, verifyOtpSchema } from '../middleware/validate.js';
+import { protect } from '../middleware/auth.js';
+const router = Router();
+router.post('/register', validate(authSchema), register);
+router.post('/login', validate(authSchema.fork(['name', 'role'], schema => schema.optional())), login);
+router.get('/me', protect, me);
+router.post('/forgot-password', validate(forgotPasswordSchema), forgotPassword);
+router.post('/reset-password/:token', validate(resetPasswordSchema), resetPassword);
+router.post('/request-otp', validate(forgotPasswordSchema), requestOtp);
+router.post('/verify-otp', validate(verifyOtpSchema), verifyOtp);
+export default router;

@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { allow, protect } from '../middleware/auth.js';
+import { appointmentSchema, validate } from '../middleware/validate.js';
+import { cancel, checkIn, create, issueQr, list, updateStatus } from '../controllers/appointmentController.js';
+const router = Router();
+router.use(protect);
+router.get('/', list);
+router.post('/', allow('Patient'), validate(appointmentSchema), create);
+router.post('/check-in', allow('Doctor', 'Admin'), checkIn);
+router.post('/:id/qr', allow('Patient'), issueQr);
+router.patch('/:id/status', allow('Doctor', 'Admin'), updateStatus);
+router.patch('/:id/cancel', allow('Patient'), cancel);
+export default router;

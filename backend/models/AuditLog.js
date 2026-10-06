@@ -1,0 +1,10 @@
+import mongoose from 'mongoose';
+const auditSchema = new mongoose.Schema({
+  actor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  action: { type: String, required: true, trim: true },
+  resource: String,
+  resourceId: String,
+  ip: String,
+  metadata: mongoose.Schema.Types.Mixed
+}, { timestamps: true });
+export default mongoose.model('AuditLog', auditSchema);
